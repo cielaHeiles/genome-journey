@@ -1,0 +1,5 @@
+random events Description | PathType (0 = Training Fellowship; 1 = Direct Lab Assignment) | Advisor (0 = none; 1 = Dr. Aliquot; 2 = Dr. Assembler; 3 = Dr. Pop-Gen; 4 = Dr. Bio-Script; 5 = Dr. Loci) | DiscoveryPoints (Lose or Gain)
+
+ex. A critical DNA sample is contaminated|1|1|-500
+
+Character class description: playerName|experience|accuracy|efficiency|insight|discoveryPoints
