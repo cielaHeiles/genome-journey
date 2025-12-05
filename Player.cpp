@@ -150,3 +150,10 @@ vector<Character> readCharacterFile(){
     vector<Character> selectedCharacters = {charactersVector[player1CharacterNum-1], charactersVector[player2CharacterNum-1]};
     return selectedCharacters;
 }
+
+void selectPathType(){
+    cout<<"Path Selection: "<<endl;
+    cout<<"(1) Training Fellowship: This path equips your scientist with essential traits(accuracy, efficiency, and insight) needed for future challenges. The training requires an invesgtment of -5,000 Discover Points, symbolizingthe time and resources dedicated to developing these skills. This path also adds 500 Accuracy Points, 500 Efficiency Points, and 1,000 Insight Points to the starting amount of your character's traitsbefore you start the journey. The Training Fellowship path will also allow you to choose an advisor who grants a unique special ability that protects them during random events that have a negative influence on your discover points."<<endl<<endl;
+    cout<<"(2) Direct Lab Assignment: This path lets your scientist jump directly into the life of DNA sequencing with an immediate boost of +5,000 Discover Points, allowing early progression and quick success. This path also adds 200 Accuracy Points, 200 Efficiency Points, and 200 Insight Points before you start the journey. Although this path offers a strong head start, it lacks long-term resilience and special abilities that could be gained through mentorship in Training Fellowship, making it a riskier approach to becoming a Lead Genomicist."<<endl<<endl<<endl;
+
+}
