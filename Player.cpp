@@ -82,6 +82,8 @@ struct Character{
     int efficiency;
     int insight;
     int discoveryPoints;
+    int path;
+    int advisor=0;
 };
 vector<Character> readCharacterFile(){
     
@@ -145,15 +147,49 @@ vector<Character> readCharacterFile(){
     cout<<"Player 2 choose character: ";
     cin>>player2CharacterNum;
     cout<<endl;
-    cout<<"All characters selected!"<<endl;
+    cout<<"All characters selected!"<<endl<<endl;
     //Return a vector with the two selected characters
     vector<Character> selectedCharacters = {charactersVector[player1CharacterNum-1], charactersVector[player2CharacterNum-1]};
     return selectedCharacters;
 }
 
-void selectPathType(){
+vector<Character> getSelectedCharacters(){
+    //Runs the readCharacterFile function and returns a vector of the 2 selected characters
+    return readCharacterFile();
+}
+
+int selectAdvisor(int player){
+    //Prompts user to select advisor. Call if user selects path type 0
+    int advisor;
+    vector<string> advisorList = {"Dr. Aliquot - A master of the \"wet lab\", assisting in avoiding contamination.", "Dr. Assembler - An expert who helps improve efficiency and streamline pipelines", "Dr, Pop-Gen - A genetics specialist with insight for identifying rare genetic variants", "Dr. Bio-Script - The genius behind the data analysis, helps debug code", "Dr. Loci - Your biggest supporter assisting you in learning the equiptment"};
+    cout<<"Player "<<player<<" Advisor Selection: "<<endl;
+    for(size_t i = 0; i<advisorList.size(); i++){
+        cout<<"("<<i+1<<")"<<advisorList[i]<<endl;
+    }
+    cin>>advisor;
+    return advisor-1;
+}
+vector<Character> selectPathType(){
+    vector<Character> selectedCharacters = getSelectedCharacters();
+    int player1Path;
+    int player2Path;
     cout<<"Path Selection: "<<endl;
     cout<<"(1) Training Fellowship: This path equips your scientist with essential traits(accuracy, efficiency, and insight) needed for future challenges. The training requires an invesgtment of -5,000 Discover Points, symbolizingthe time and resources dedicated to developing these skills. This path also adds 500 Accuracy Points, 500 Efficiency Points, and 1,000 Insight Points to the starting amount of your character's traitsbefore you start the journey. The Training Fellowship path will also allow you to choose an advisor who grants a unique special ability that protects them during random events that have a negative influence on your discover points."<<endl<<endl;
     cout<<"(2) Direct Lab Assignment: This path lets your scientist jump directly into the life of DNA sequencing with an immediate boost of +5,000 Discover Points, allowing early progression and quick success. This path also adds 200 Accuracy Points, 200 Efficiency Points, and 200 Insight Points before you start the journey. Although this path offers a strong head start, it lacks long-term resilience and special abilities that could be gained through mentorship in Training Fellowship, making it a riskier approach to becoming a Lead Genomicist."<<endl<<endl<<endl;
+    cout<<"Player 1 select path(1,2): ";
+    cin>>player1Path;
+    cout<<endl;
+    selectedCharacters[0].path = player1Path-1;
+    if(player1Path == 1){
+        selectedCharacters[0].advisor = selectAdvisor(1);
+    }
+    cout<<"Player 2 select path(1,2): ";
+    cin>>player2Path;
+    cout<<endl;
+    selectedCharacters[1].path = player2Path-1;
 
+    if(player2Path == 1){
+        selectedCharacters[1].advisor = selectAdvisor(2);
+    }
+    return selectedCharacters;
 }
