@@ -169,6 +169,19 @@ int selectAdvisor(int player){
     cin>>advisor;
     return advisor-1;
 }
+void changeStatsBasedOnPathType(int pathType, Character c){
+    if(pathType == 0){
+        c.discoveryPoints -= 5000;
+        c.accuracy += 500;
+        c.efficiency +=500;
+        c.insight += 1000;
+    }if(pathType == 1){
+        c.discoveryPoints +=5000;
+        c.accuracy += 200;
+        c.efficiency += 200;
+        c.insight += 200;
+    }
+}
 vector<Character> selectPathType(){
     //Create vector of selected characters
     vector<Character> selectedCharacters = getSelectedCharacters();
@@ -199,3 +212,4 @@ vector<Character> selectPathType(){
     //return characters vector
     return selectedCharacters;
 }
+

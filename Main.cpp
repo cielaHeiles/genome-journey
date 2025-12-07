@@ -3,18 +3,15 @@ using namespace std;
 #include <iostream>
 #include "tile.cpp"
 #include "player.cpp"
-#include "mainMenu.cpp"
+#include "board.cpp"
 int main(){
-    vector<Character> selectedCharacters = selectPathType();
-    for(size_t i = 0; i<selectedCharacters.size(); i++){
-        cout<<selectedCharacters[i].name<<";";
-        cout<<selectedCharacters[i].experience<<";";
-        cout<<selectedCharacters[i].accuracy<<";";
-        cout<<selectedCharacters[i].efficiency<<";";
-        cout<<selectedCharacters[i].insight<<";";
-        cout<<selectedCharacters[i].discoveryPoints<<";";
-        cout<<selectedCharacters[i].path<<";";
-        cout<<selectedCharacters[i].advisor<<";";
-        cout<<endl;
+    vector<Character> characterVector = selectPathType();
+    for(size_t i = 0; i<characterVector.size(); i++){
+        cout<<characterVector[i].name;
+        cout<<characterVector[i].discoveryPoints;
+        cout<<characterVector[i].path;
+        cout<<characterVector[i].advisor;
     }
+    
+
 }
