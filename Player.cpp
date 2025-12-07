@@ -169,27 +169,47 @@ int selectAdvisor(int player){
     cin>>advisor;
     return advisor-1;
 }
+void changeStatsBasedOnPathType(int pathType, Character c){
+    if(pathType == 0){
+        c.discoveryPoints -= 5000;
+        c.accuracy += 500;
+        c.efficiency +=500;
+        c.insight += 1000;
+    }if(pathType == 1){
+        c.discoveryPoints +=5000;
+        c.accuracy += 200;
+        c.efficiency += 200;
+        c.insight += 200;
+    }
+}
 vector<Character> selectPathType(){
+    //Create vector of selected characters
     vector<Character> selectedCharacters = getSelectedCharacters();
     int player1Path;
     int player2Path;
+    //Display path options
     cout<<"Path Selection: "<<endl;
     cout<<"(1) Training Fellowship: This path equips your scientist with essential traits(accuracy, efficiency, and insight) needed for future challenges. The training requires an invesgtment of -5,000 Discover Points, symbolizingthe time and resources dedicated to developing these skills. This path also adds 500 Accuracy Points, 500 Efficiency Points, and 1,000 Insight Points to the starting amount of your character's traitsbefore you start the journey. The Training Fellowship path will also allow you to choose an advisor who grants a unique special ability that protects them during random events that have a negative influence on your discover points."<<endl<<endl;
     cout<<"(2) Direct Lab Assignment: This path lets your scientist jump directly into the life of DNA sequencing with an immediate boost of +5,000 Discover Points, allowing early progression and quick success. This path also adds 200 Accuracy Points, 200 Efficiency Points, and 200 Insight Points before you start the journey. Although this path offers a strong head start, it lacks long-term resilience and special abilities that could be gained through mentorship in Training Fellowship, making it a riskier approach to becoming a Lead Genomicist."<<endl<<endl<<endl;
     cout<<"Player 1 select path(1,2): ";
+    //Player 1 path selection
     cin>>player1Path;
     cout<<endl;
     selectedCharacters[0].path = player1Path-1;
+    //advisor selection
     if(player1Path == 1){
         selectedCharacters[0].advisor = selectAdvisor(1);
     }
+    //Player 2 path selection
     cout<<"Player 2 select path(1,2): ";
     cin>>player2Path;
     cout<<endl;
     selectedCharacters[1].path = player2Path-1;
-
+    //advisor selection
     if(player2Path == 1){
         selectedCharacters[1].advisor = selectAdvisor(2);
     }
+    //return characters vector
     return selectedCharacters;
 }
+
