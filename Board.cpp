@@ -33,8 +33,10 @@ Board::Board() {
     }
 
     // Fill both lanes
+    srand(time(0));
     initializeBoard();
 }
+
 
 // =========================== Private Member Functions ===========================
 
@@ -43,7 +45,6 @@ void Board::initializeTiles(int player_index) {
     int green_count = 0;
     // Recall 52 from header file
     int total_tiles = _BOARD_SIZE;
-
     for (int i = 0; i < total_tiles; i++) {
         // Set the last tile as Orange for the finish line
         if (i == total_tiles - 1) {
@@ -85,6 +86,7 @@ void Board::initializeTiles(int player_index) {
         // Recall i refers to tile 0 to 51
         _tiles[player_index][i] = tile;
     }
+
 }
 
 bool Board::isPlayerOnTile(int player_index, int pos) {
@@ -100,14 +102,38 @@ void Board::displayTile(int player_index, int pos) {
 
     // Using the defined nicenames above
     switch(_tiles[player_index][pos].color) {
-        case 'O': color = ORANGE; break;
-        case 'Y': color = GREY; break;
-        case 'G': color = GREEN; break;
-        case 'B': color = BLUE; break;
-        case 'P': color = PINK; break;
-        case 'T': color = BROWN; break;
-        case 'R': color = RED; break;
-        case 'U': color = PURPLE; break;
+        case 'O': 
+            color = ORANGE;
+            allColors[player_index][pos] = 'O';
+            break;
+        case 'Y':
+            color = GREY;
+            allColors[player_index][pos] = 'Y';
+            break;
+        case 'G':
+            color = GREEN;
+            allColors[player_index][pos] = 'G';
+            break;
+        case 'B':
+            color = BLUE;
+            allColors[player_index][pos] = 'B';
+            break;
+        case 'P':
+            color =PINK;
+            allColors[player_index][pos]= 'P';
+            break;
+        case 'T':
+            color = BROWN;
+            allColors[player_index][pos] = 'B';
+            break;
+        case 'R':
+            color = RED;
+            allColors[player_index][pos] = 'R';
+            break;
+        case 'U':
+            color = PURPLE;
+            allColors[player_index][pos] = 'U';
+            break;
     }
 
     // Template for displaying a tile: <line filler space> <color start> |<player symbol or blank space>| <reset color> <line filler space> <endl>
@@ -162,3 +188,9 @@ int Board::getPlayerPosition(int player_index) const {
     }
     return -1;
 }
+
+char Board::getTileColor(int player_index, int pos){
+    return allColors[player_index][pos];
+}
+
+

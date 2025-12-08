@@ -8,6 +8,30 @@ using namespace std;
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <iomanip>
+
+
+string generateStrand(int len){
+    
+    string bases[4] = {"A", "T", "C", "G"};
+    string strand;
+    for(int i = 0; i < len; i++){
+        int base = rand() % 4;
+        strand += bases[base];
+    }
+    return strand;
+}
+
+string generateTargetStrand(){
+    //length is 4
+    string bases[4] = {"A", "T", "C", "G"};
+    string strand;
+    for(int i = 0; i < 4; i++){
+        int base = rand() % 4;
+        strand += bases[base];
+    }
+    return strand;
+}
 
 double DNATask1(string strand1, string strand2){
     //Task 1(blue): calculate similarity score(total matches/total positions) for two strands of equal length
@@ -23,6 +47,37 @@ double DNATask1(string strand1, string strand2){
     similarityScore = totalMatches/totalPositions;
     return similarityScore;
 }
+
+/*
+Generate strands and display
+Display task
+Take in user input
+Return if correct or not/change points
+*/
+
+int executeDNATask1(){
+    srand(time(0));
+    string strand1 = generateStrand(8);
+    string strand2 = generateStrand(8);
+    int points;
+    double playerSimilarityScore;
+    double correctSimilarityScore;
+    cout<<"For the followng two DNA strands, calculate the similarity score based on the number of matching bases at corresponding positions with the following formula:"<<endl<<"Similarity = total matches/total positions"<<endl;
+    cout<<strand1<<endl<<strand2<<endl;
+    cout<<"Enter similarity score: ";
+    cin>>playerSimilarityScore;
+    //round both these values to 2 decimal places later
+    correctSimilarityScore = DNATask1(strand1, strand2);
+    if(playerSimilarityScore == correctSimilarityScore){
+        cout<<"Correct answer!";
+        points = 50;
+    }else{
+        cout<<"Incorrect answer";
+        points = -50;
+    }
+    return points;
+}
+
 
 int DNATask2(string input_strand, string target_strand){
     //Task 2(pink): Slide the target strand(shorter) along the input strand(longer), return the starting index of the position with the highest similarity score
@@ -41,8 +96,26 @@ int DNATask2(string input_strand, string target_strand){
             bestIndex = i;
         }
     }
-    cout<< "Best similarity score: "<<mostMatches/target_strand.length()<<endl;
     return bestIndex;
+}
+
+int executeDNATask2(){
+    string input_strand = generateStrand(8);
+    string target_strand = generateTargetStrand();
+    int points;
+    int playerStartingIndex;
+    int correctStartingIndex = DNATask2(input_strand, target_strand);
+    cout<<"For these two strands of different legths, slide the shorter strand along the longer strand and find the location with the best alignment between the two strands. Indicate the starting index of that position."<<endl;
+    cout<<"Enter starting index: ";
+    cin>>playerStartingIndex;
+    if(playerStartingIndex = correctStartingIndex){
+        cout<<"Correct answer!";
+        points = 50;
+    }else{
+        cout<<"Incorrect answer.";
+        points = -50;
+    }
+    return points;
 }
 
 void DNATask3(string input_strand, string target_strand){
@@ -64,7 +137,14 @@ void DNATask3(string input_strand, string target_strand){
     }
 }
 
-void DNATask4(string strand){
+int executeDNATask3(){
+    string input_strand = generateStrand(8);
+    string target_strand = generateTargetStrand();
+    //Write this
+    return 1;
+}
+
+string DNATask4(string strand){
     //Task 4(brown): Transcribe DNA sequence to RNA by replacing all occurances of T with U, print RNA sequence to console
     string RNAStrand=strand;
     for(int i = 0; i<(int)strand.size(); i++){
@@ -72,7 +152,25 @@ void DNATask4(string strand){
             RNAStrand.at(i)='U';
         }
     }
-    cout<<RNAStrand;
+    return RNAStrand;
+}
+
+int executeDNATask4(){
+    string strand = generateStrand(8);
+    string playerRNAStrand;
+    string correctRNAStrand = DNATask4(strand);
+    int points;
+    cout<<"Transcribe the DNA strand to RNA by replacing all occurances of thymine('T') with uracil('U')"<<endl;
+    cout<<"Enter RNA strand: ";
+    cin>>playerRNAStrand;
+    if(playerRNAStrand == correctRNAStrand){
+        cout<<"Correct answer!"<<endl;
+        points = 50;
+    }else{
+        cout<<"Incorrect answer."<<endl;
+        points = -50;
+    }
+    return points;
 }
 
 bool randomRiddle(){
