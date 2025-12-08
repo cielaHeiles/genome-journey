@@ -18,7 +18,6 @@ class Board {
         int _player_position[_MAX_PLAYERS];
 
         void initializeTiles(int player_index);
-        bool isPlayerOnTile(int player_index, int pos);
         void displayTile(int player_index, int pos);
 
     public:
@@ -29,8 +28,11 @@ class Board {
         void displayTrack(int player_index);
         void displayBoard();
         bool movePlayer(int player_index);
+        bool isPlayerOnTile(int player_index, int pos);
+        char allColors[2][52];
         // Recall we can use const for getter functions
         int getPlayerPosition(int player_index) const;
+        char getTileColor(int player_index, int pos);
 };
 
 #endif
